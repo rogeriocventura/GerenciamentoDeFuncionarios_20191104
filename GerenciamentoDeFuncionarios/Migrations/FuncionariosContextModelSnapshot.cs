@@ -28,7 +28,11 @@ namespace GerenciamentoDeFuncionarios.Migrations
                     b.Property<string>("Nome")
                         .IsRequired();
 
+                    b.Property<int>("ResponsavelId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ResponsavelId");
 
                     b.ToTable("Departamento");
                 });
@@ -75,6 +79,14 @@ namespace GerenciamentoDeFuncionarios.Migrations
                     b.HasIndex("ExecutorId");
 
                     b.ToTable("Tarefas");
+                });
+
+            modelBuilder.Entity("GerenciamentoDeFuncionarios.Models.Departamento", b =>
+                {
+                    b.HasOne("GerenciamentoDeFuncionarios.Models.Funcionario", "Responsavel")
+                        .WithMany()
+                        .HasForeignKey("ResponsavelId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("GerenciamentoDeFuncionarios.Models.Funcionario", b =>
