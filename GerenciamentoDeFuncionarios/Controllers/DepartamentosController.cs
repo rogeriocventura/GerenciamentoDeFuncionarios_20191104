@@ -48,7 +48,10 @@ namespace GerenciamentoDeFuncionarios.Controllers
         public IActionResult Create()
         {
             ViewData["ResponsavelId"] = 
-                new SelectList(_context.Funcionario, "Id", "Nome");
+                new SelectList(
+                    _context.Funcionario.Where(f => f.Lotacao == null)
+                    , "Id", 
+                    "Nome");
             return View();
         }
 
@@ -61,6 +64,7 @@ namespace GerenciamentoDeFuncionarios.Controllers
         {
             departamento.Responsavel = _context.Funcionario
                     .Find(departamento.ResponsavelId);
+            TryValidateModel(departamento);
             if (ModelState.IsValid)
             {
                 if(departamento.Responsavel.Lotacao == null)
@@ -88,7 +92,9 @@ namespace GerenciamentoDeFuncionarios.Controllers
             {
                 return NotFound();
             }
-            ViewData["ResponsavelId"] = new SelectList(_context.Funcionario, "Id", "Nome", departamento.ResponsavelId);
+            ViewData["ResponsavelId"] = 
+                new SelectList(_context.Funcionario, "Id", "Nome", 
+                departamento.ResponsavelId);
             return View(departamento);
         }
 
