@@ -13,7 +13,11 @@ namespace GerenciamentoDeFuncionarios.Models
             : base(options)
         {
         }
-
+               
+        protected override void OnModelCreating(ModelBuilder model)
+        {
+        }
+    
         public DbSet<GerenciamentoDeFuncionarios.Models.Departamento> Departamento { get; set; }
 
         public DbSet<GerenciamentoDeFuncionarios.Models.Funcionario> Funcionario { get; set; }
