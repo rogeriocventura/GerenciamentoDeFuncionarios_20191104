@@ -34,6 +34,11 @@
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ExecutorId" class="control-label"></label>
+                <select asp-for="ExecutorId" class="form-control" asp-items="ViewBag.ExecutorId"></select>
+                <span asp-validation-for="ExecutorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>

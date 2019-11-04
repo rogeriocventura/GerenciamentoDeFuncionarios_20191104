@@ -21,8 +21,8 @@ namespace GerenciamentoDeFuncionarios.Controllers
         // GET: Departamentos
         public async Task<IActionResult> Index()
         {
-            var funcionariosContext = _context.Departamento.Include(d => d.Responsavel);
-            return View(await funcionariosContext.ToListAsync());
+
+            return View(await _context.Departamento.Include(d => d.Responsavel).ToListAsync());
         }
 
         // GET: Departamentos/Details/5
